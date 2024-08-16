@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mail-registry
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: mail-registry
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mail-registry
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+    hibernate:
+      ddl-auto: update
+
+jedis:
+  pool:
+    host: localhost
+    port: 6379
+    maxTotal: 10
+    maxIdle: 5
+    maxWaitMillis: 10
+
+logging:
+  level:
+    org:
+      springframework:
+        transaction:
+          interceptor: TRACE
+
+application:
+  security:
+    jwt:
+      secret-key: superfuckingkafka123superfuckingkafka123superfuckingkafka123
+      expiration: 86400000
+      refresh-token:
+        expiration: 86400000
